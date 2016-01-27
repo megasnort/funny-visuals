@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="nl"> 
+	<head>
+		<meta charset="UTF-8" /> 
+		<meta name="author" content="Stef Bastiaansen" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<title>001</title> 
+
+		<link href="css/general.css" rel="stylesheet" type="text/css" />
+	</head> 
+	<body>		
+		<script type="text/javascript" src="js/general.js"></script>
+		<script>
+
+			var c = canvas.getContext('2d');
+
+			// store all particles
+			ps = [];
+
+			// store mouse coordinates in a variable, but init in the middle of the window
+			mouse = {
+				x: canvas.width / 2,
+				y: canvas.width / 2
+			}
+
+			document.onmousemove = function(e) {
+				mouse.x = e.clientX,
+				mouse.y = e.clientY
+			}
+
+			function showFrame() {
+				// create a new particle
+				p = {
+					x: mouse.x,
+					y: mouse.y,
+					width: 10,
+					height: 10,
+					speed: 1,
+					rotation: Math.random() * Math.PI * 2,
+					size: 10,
+					color: randomColor()
+				}
+
+				ps.push(p);
+
+				// clear the screen	(also nice when you don't do this)
+				//c.clearRect(0, 0, canvas.width, canvas.height)
+
+				// loop the existing particles and render them on the new location
+				for(var i = 0; i < ps.length; i++) {					
+					c.fillRect(ps[i].x, ps[i].y, ps[i].size, ps[i].size);
+					c.fillStyle = ps[i].color;
+
+					ps[i].x += Math.sin(ps[i].rotation) * ps[i].speed;
+					ps[i].y += Math.cos(ps[i].rotation) * ps[i].speed;	
+					ps[i].size *= 0.99999;
+				}
+
+				// @todo: clean up elements outside canvas
+			}
+
+			setInterval(showFrame, 1000/200);
+		</script>
+	</body>
+</html>
