@@ -6,7 +6,7 @@
 		<meta name="author" content="Stef Bastiaansen" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-		<title>001</title> 
+		<title>002</title> 
 
 		<link href="css/general.css" rel="stylesheet" type="text/css" />
 	</head> 
@@ -17,7 +17,7 @@
 			var c = canvas.getContext('2d');
 
 			// store all particles
-			particles = [];
+			var particles = [];
 
 			// store mouse coordinates in a variable, but init in the middle of the window
 			mouse = {
@@ -34,19 +34,16 @@
 				remaining_particles = [];
 
 				// create a new particle
-				p = {
+				var p = {
 					x: mouse.x,
 					y: mouse.y,
 					speed: 1,
 					rotation: Math.random() * Math.PI * 2,
-					size: (20 * Math.random()) + 3,
+					size: 10,
 					color: randomColor()
 				}
 
 				particles.push(p);
-
-				// clear the screen	(also nice when you don't do this)
-				c.clearRect(0, 0, canvas.width, canvas.height)
 
 				// loop the existing particles and render them on the new location
 				for(var i = 0; i < particles.length; i++) {					
@@ -55,7 +52,7 @@
 
 					particles[i].x += Math.sin(particles[i].rotation) * particles[i].speed;
 					particles[i].y += Math.cos(particles[i].rotation) * particles[i].speed;	
-					particles[i].size *= 0.99;
+					particles[i].size *= 1.0001;
 
 					if (inCanvas(particles[i])) {
 						remaining_particles.push(particles[i]);
@@ -63,8 +60,6 @@
 				}
 
 				particles = remaining_particles
-
-				console.log(particles.length);
 			}
 
 			setInterval(showFrame, 1000/100);

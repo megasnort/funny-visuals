@@ -1,3 +1,12 @@
+function inCanvas(p)
+{
+	return (
+		p.x > -100 &&
+		p.y > -100 &&
+		p.x < canvas.width + 100 &&
+		p.y < canvas.height + 100
+	);
+}
 
 function randomColor()
 {
