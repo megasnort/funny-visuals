@@ -10,20 +10,13 @@ class Experiment001 extends Experiment{
         // store mouse coordinates in a variable, but init in the middle of the window
         this.mouse = {
             x: canvas.width / 2,
-            y: canvas.width / 2
+            y: canvas.height / 2
         }
     }
 
     start() {
-        var ref = this; 
-
-        this.canvas.onmousemove = function(e) {
-        	ref.onmousemove(e);
-        }
-
-        this.interval = setInterval(function() {
-        	ref.showFrame()
-        }, 1000/100);
+        this.canvas.onmousemove = this.onmousemove.bind(this);
+        this.interval = setInterval(this.showFrame.bind(this), 1000/100);
     }
 
     onmousemove (e) {
