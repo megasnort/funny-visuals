@@ -2,26 +2,15 @@
 
 class Experiment001 extends Experiment{
 
-    constructor(context, canvas) {
-        super(context, canvas);
+    constructor(canvas) {
+        super('2d', canvas);
         
         this.particles = [];
-
-        // store mouse coordinates in a variable, but init in the middle of the window
-        this.mouse = {
-            x: canvas.width / 2,
-            y: canvas.height / 2
-        }
     }
 
     start() {
         this.canvas.onmousemove = this.onmousemove.bind(this);
         this.interval = setInterval(this.showFrame.bind(this), 1000/100);
-    }
-
-    onmousemove (e) {
-        this.mouse.x = e.clientX,
-        this.mouse.y = e.clientY
     }
 
     showFrame() {
@@ -44,11 +33,11 @@ class Experiment001 extends Experiment{
         // loop the existing particles and render them on the new location
         for(var i = 0; i < this.particles.length; i++) {                 
             this.c.fillRect(
-            	this.particles[i].x,
-            	this.particles[i].y,
-            	this.particles[i].size,
-            	this.particles[i].size
-        	);
+                this.particles[i].x,
+                this.particles[i].y,
+                this.particles[i].size,
+                this.particles[i].size
+            );
 
             this.c.fillStyle = this.particles[i].color;
 
@@ -61,11 +50,8 @@ class Experiment001 extends Experiment{
             }
         }
 
-        this.particles = remaining_particles
+        this.particles = remaining_particles;
     }
 }
 
-var experiment = new Experiment001('2d', fv.canvas);
-
-experiment.start();
-
+var experiment = new Experiment001(fv.canvas);
