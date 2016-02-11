@@ -6,6 +6,8 @@ class Experiment004 extends Experiment{
         super('2d', canvas);
         
         this.particles = [];
+        this.moveSpeed = 0.1;
+        this.moveRotation = -Math.PI;
     }
 
     start() {
@@ -19,22 +21,24 @@ class Experiment004 extends Experiment{
         var remaining_particles = [];
 
         if(this.keys[37]) {
-            this.position.x -= 5;
+            this.moveRotation += 0.1;
         }
 
         if (this.keys[39]) {
-            this.position.x += 5;
+            this.moveRotation -= 0.1;
         }
 
         if(this.keys[38]) {
-            this.position.y -= 5;
+            this.moveSpeed += 0.1;
         }
 
         if (this.keys[40]) {
-            this.position.y += 5;
+            this.moveSpeed -= 0.1;
         }
 
-        // create a new particle
+        this.position.x += Math.sin(this.moveRotation) * this.moveSpeed;
+        this.position.y += Math.cos(this.moveRotation) * this.moveSpeed;
+        
         var p = {
             x: this.position.x,
             y: this.position.y,
@@ -54,16 +58,10 @@ class Experiment004 extends Experiment{
             this.c.fillRect(this.particles[i].x, this.particles[i].y, this.particles[i].size, this.particles[i].size);
             this.c.fillStyle = this.particles[i].color;
 
-            this.particles[i].x += Math.sin(this.particles[i].rotation) * this.particles[i].speed;
-            this.particles[i].y += Math.cos(this.particles[i].rotation) * this.particles[i].speed;
+            this.particles[i].x += Math.sin(this.moveRotation - Math.PI) * this.particles[i].speed;
+            this.particles[i].y += Math.cos(this.moveRotation - Math.PI) * this.particles[i].speed;
             this.particles[i].size *= 1.0001;
-
-            if (fv.inCanvas(this.particles[i])) {
-                remaining_particles.push(this.particles[i]);
-            }
         }
-
-        this.particles = remaining_particles
     }
 }
 
