@@ -12,6 +12,17 @@ class Experiment {
             y: this.canvas.height / 2
         }
 
+        this.position = {
+            x: this.canvas.width / 2,
+            y: this.canvas.height / 2
+        }
+
+        this.keys = [];
+
+        for(var i = 0; i < 128; i++) {
+            this.keys[i] = false;
+        }
+
         this.wipe();
     }
 
@@ -30,6 +41,18 @@ class Experiment {
     onmousemove (e) {
         this.mouse.x = e.clientX,
         this.mouse.y = e.clientY
+    }
+
+    onkeydown (e) {
+        var keyCode = (e.which?e.which:(e.keyCode?e.keyCode:0))
+
+        this.keys[keyCode] = true;
+    }
+
+    onkeyup (e) {
+        var keyCode = (e.which?e.which:(e.keyCode?e.keyCode:0))
+
+        this.keys[keyCode] = false;
     }
 }
 
