@@ -6,13 +6,8 @@ After developing similar stuff in ActionScript 10 years ago and after seeing
 [Seb Lee-Delisle](<http://seb.ly/>) I decided to create funny visuals again with
 code.
 
--   **004**: Draw a spiral and move with the arrow keys
-
--   **003**: First attempt to fake gravity. Not entirely correct because the
-    speed var remains the same
-
--   **002**: Draw lines in any random direction
-
--   **001**: Fire particles from the position of the mouse with random colors
-
--   ...
+- **[004](http://megasnort.github.io/funny-visuals/#004)**: Draw a spiral and move with the arrow keys
+- **[003](http://megasnort.github.io/funny-visuals/#003)**: First attempt to fake gravity. Not entirely correct because the speed var remains the same
+- **[002](http://megasnort.github.io/funny-visuals/#002)**: Draw lines in any random direction
+- **[001](http://megasnort.github.io/funny-visuals/#001)**: Fire particles from the position of the mouse with random colors
+- ...
